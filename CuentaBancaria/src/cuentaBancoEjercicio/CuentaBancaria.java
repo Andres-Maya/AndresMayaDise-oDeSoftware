@@ -29,13 +29,21 @@ public class CuentaBancaria {
 
     public String getTitular() {
 
-        String encriptar = titular.substring(0,1);
+        String[] partes = titular.split(" ");
+        String resultado = "";
 
-        for (int i = 1; i < titular.length(); i++){
+        for (String nombre : partes) {
 
-            encriptar += "*";
+            String encriptado = nombre.substring(0, 1);
+
+            for (int i = 1; i < nombre.length(); i++) {
+                encriptado += "*";
+            }
+
+            resultado += encriptado + " ";
         }
-        return encriptar;
+
+        return resultado.trim();
     }
 
     public void setTitular(String titular) {
@@ -44,10 +52,7 @@ public class CuentaBancaria {
 
     @Override
     public String toString() {
-        return "CuentaBancaria{" +
-                "saldo=" + saldo +
-                ", titular='" + titular + '\'' +
-                '}';
+        return "Cuenta Bancaria de: " + this.getTitular() + " con un saldo de: " + this.saldo;
     }
 
 }
